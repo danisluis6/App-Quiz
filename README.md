@@ -2,6 +2,6 @@
 
     - STEP ONE: Custom GUI of NavigationDrawer follow application.
 <p align="center">
-  <img src="https://github.com/danisluis6/Material-Design-Floating-Action-Button/blob/version2/3.png">
+  <img src="https://github.com/danisluis6/App-Quiz/blob/version1/NavigationDrawer.png">
 </p>
 
