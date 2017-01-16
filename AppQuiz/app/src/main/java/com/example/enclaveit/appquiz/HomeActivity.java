@@ -24,28 +24,30 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
-        // Let 's  establish s a lot of widgets android, avoid Null Pointer Error
-        establishWidgetsAndroid();
-        // I just downloaded a lot of fonts and I want to set these fonts for text
-        establishFontsWidgetAndroid();
+
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+        this.setSupportActionBar(toolbar);
+
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
-                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.setDrawerListener(toggle);
         toggle.syncState();
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+        // Let 's  establish s a lot of widgets android, avoid NullPointerException
+        establishWidgetsAndroid();
+        // I just downloaded a lot of fonts and I want to set these fonts for text
+        establishFontsWidgetAndroid();
     }
 
-    private void establishFontsWidgetAndroid() {
+    public void establishFontsWidgetAndroid() {
         navHeaderAuthorName.setTypeface(Typeface.createFromAsset(this.getAssets(),"fonts/Roboto-Light.ttf"));
     }
 
-    private void establishWidgetsAndroid() {
+    public void establishWidgetsAndroid() {
         navHeaderAuthorAvatar = (CircleImageView)this.findViewById(R.id.nav_header_author_avatar);
         navHeaderAuthorName = (TextView)this.findViewById(R.id.nav_header_author_name) ;
         navHeaderAuthorDescription = (TextView)this.findViewById(R.id.nav_header_author_description);

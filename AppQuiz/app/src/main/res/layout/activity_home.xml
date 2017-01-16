@@ -8,6 +8,10 @@
     android:fitsSystemWindows="true"
     tools:openDrawer="start">
 
+    <!-- You need to divide  acitivity_home between you two
+        Part 1: This app_bar_home contains main_content
+        Part 2: This NavigationView contains Main Menu
+    -->
     <include
         layout="@layout/app_bar_home"
         android:layout_width="match_parent"
