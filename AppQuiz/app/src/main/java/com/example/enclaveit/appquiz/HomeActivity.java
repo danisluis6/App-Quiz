@@ -8,8 +8,11 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import de.hdodenhof.circleimageview.CircleImageView;
@@ -38,19 +41,24 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         navigationView.setNavigationItemSelectedListener(this);
 
         // Let 's  establish s a lot of widgets android, avoid NullPointerException
-        establishWidgetsAndroid();
+        establishWidgetsAndroid(navigationView);
         // I just downloaded a lot of fonts and I want to set these fonts for text
         establishFontsWidgetAndroid();
+
     }
 
-    public void establishFontsWidgetAndroid() {
-        navHeaderAuthorName.setTypeface(Typeface.createFromAsset(this.getAssets(),"fonts/Roboto-Light.ttf"));
+    private void establishWidgetsAndroid(NavigationView navigationView) {
+        View header = ((NavigationView)findViewById(R.id.nav_view)).getHeaderView(0);
+        navHeaderAuthorAvatar = (CircleImageView)header.findViewById(R.id.nav_header_author_avatar);
+
+        navHeaderAuthorName = (TextView)header.findViewById(R.id.nav_header_author_name) ;
+
+        navHeaderAuthorDescription = (TextView)header.findViewById(R.id.nav_header_author_description);
     }
 
-    public void establishWidgetsAndroid() {
-        navHeaderAuthorAvatar = (CircleImageView)this.findViewById(R.id.nav_header_author_avatar);
-        navHeaderAuthorName = (TextView)this.findViewById(R.id.nav_header_author_name) ;
-        navHeaderAuthorDescription = (TextView)this.findViewById(R.id.nav_header_author_description);
+    private void establishFontsWidgetAndroid() {
+        navHeaderAuthorName.setTypeface(Typeface.createFromAsset(this.getAssets(),"fonts/Roboto-Medium.ttf"));
+        navHeaderAuthorDescription.setTypeface(Typeface.createFromAsset(this.getAssets(),"fonts/Roboto-Light.ttf"));
     }
 
     @Override
