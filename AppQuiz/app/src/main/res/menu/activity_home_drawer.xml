@@ -3,26 +3,26 @@
 
     <group android:checkableBehavior="single">
         <item
-            android:id="@+id/nav_camera"
-            android:icon="@drawable/ic_menu_camera"
+            android:id="@+id/nav_menu_home"
+            android:icon="@drawable/ic_menu_home"
             android:title="Trang chủ" />
         <item android:title="Đề thi trắc nghiệm các môn học">
             <menu>
                 <item
-                    android:id="@+id/nav_gallery"
-                    android:icon="@drawable/ic_menu_gallery"
+                    android:id="@+id/nav_menu_math"
+                    android:icon="@drawable/ic_menu_math"
                     android:title="Môn Toán" />
                 <item
-                    android:id="@+id/nav_slideshow"
-                    android:icon="@drawable/ic_menu_slideshow"
+                    android:id="@+id/nav_menu_physic"
+                    android:icon="@drawable/ic_menu_physic"
                     android:title="Môn Vật Lý" />
                 <item
-                    android:id="@+id/nav_manage"
-                    android:icon="@drawable/ic_menu_manage"
+                    android:id="@+id/nav_menu_chemistry"
+                    android:icon="@drawable/ic_menu_chemistry"
                     android:title="Môn Hóa Học" />
                 <item
-                    android:id="@+id/nav_biology"
-                    android:icon="@drawable/ic_menu_camera"
+                    android:id="@+id/nav_menu_biology"
+                    android:icon="@drawable/ic_menu_biology"
                     android:title="Môn Sinh Học" />
             </menu>
         </item>
