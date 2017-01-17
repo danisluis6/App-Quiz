@@ -11,15 +11,10 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.ImageView;
 import android.widget.TextView;
-
-import de.hdodenhof.circleimageview.CircleImageView;
 
 public class HomeActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
-    private ImageView navHeaderBanner;
-    private CircleImageView navHeaderAuthorAvatar;
     private TextView navHeaderAuthorName;
     private TextView navHeaderAuthorDescription;
 
@@ -39,6 +34,8 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+        drawer.setScrimColor(getResources().getColor(android.R.color.transparent));
+
 
         // Let 's  establish s a lot of widgets android, avoid NullPointerException
         establishWidgetsAndroid(navigationView);
@@ -50,15 +47,11 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
     private void establishWidgetsAndroid(NavigationView navigationView) {
         View header = ((NavigationView)findViewById(R.id.nav_view)).getHeaderView(0);
 
-//        navHeaderBanner = (ImageView)header.findViewById(R.id.nav_header_banner);
-//        navHeaderAuthorAvatar = (CircleImageView)header.findViewById(R.id.nav_header_author_avatar);
         navHeaderAuthorName = (TextView)header.findViewById(R.id.nav_header_author_name) ;
         navHeaderAuthorDescription = (TextView)header.findViewById(R.id.nav_header_author_description);
     }
 
     private void establishFontsWidgetAndroid() {
-//        navHeaderBanner.setImageResource(R.drawable.nav_header_banner);
-//        navHeaderAuthorAvatar.setImageResource(R.drawable.nav_header_author_avatar);
         navHeaderAuthorName.setTypeface(Typeface.createFromAsset(this.getAssets(),"fonts/Roboto-Light.ttf"));
         navHeaderAuthorDescription.setTypeface(Typeface.createFromAsset(this.getAssets(),"fonts/Roboto-Light.ttf"));
     }

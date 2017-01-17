@@ -4,25 +4,25 @@
     <group android:checkableBehavior="single">
         <item
             android:id="@+id/nav_menu_home"
-            android:icon="@drawable/ic_menu_home"
+            android:icon="@drawable/ic_menu_gallery"
             android:title="Trang chủ" />
         <item android:title="Đề thi trắc nghiệm các môn học">
             <menu>
                 <item
                     android:id="@+id/nav_menu_math"
-                    android:icon="@drawable/ic_menu_math"
+                    android:icon="@drawable/ic_menu_share"
                     android:title="Môn Toán" />
                 <item
                     android:id="@+id/nav_menu_physic"
-                    android:icon="@drawable/ic_menu_physic"
+                    android:icon="@drawable/ic_menu_share"
                     android:title="Môn Vật Lý" />
                 <item
                     android:id="@+id/nav_menu_chemistry"
-                    android:icon="@drawable/ic_menu_chemistry"
+                    android:icon="@drawable/ic_menu_share"
                     android:title="Môn Hóa Học" />
                 <item
                     android:id="@+id/nav_menu_biology"
-                    android:icon="@drawable/ic_menu_biology"
+                    android:icon="@drawable/ic_menu_share"
                     android:title="Môn Sinh Học" />
             </menu>
         </item>
