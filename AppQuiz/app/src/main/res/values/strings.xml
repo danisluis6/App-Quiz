@@ -5,4 +5,16 @@
     <string name="navigation_drawer_close">Close navigation drawer</string>
 
     <string name="action_settings">Settings</string>
+
+    <!-- I want to have a definite array before create object -->
+    <string-array name="navigation_drawer_items_array">
+        <item>Trang chủ</item>
+        <item>Môn Toán</item>
+        <item>Môn Vật Lý</item>
+        <item>Môn Hoá Học</item>
+        <item>Môn Sinh Học</item>
+        <item>Cài Đặt </item>
+        <item>Trợ Giúp</item>
+    </string-array>
+
 </resources>
