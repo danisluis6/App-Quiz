@@ -13,6 +13,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
+import com.example.enclaveit.appquiz.bean.DrawerItem;
+
 public class HomeActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     private TextView navHeaderAuthorName;
@@ -43,6 +45,26 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         // I just downloaded a lot of fonts and I want to set these fonts for text
         establishFontsWidgetAndroid();
 
+        /**
+         *  Do you have something to declare ?
+         *  - Create data for object DrawerItem.
+         * - So I 'm preparing for that:
+         *  * icon png for menu navigation
+         *  * array-string that definite in string.xml
+         */
+        establishDataForDrawerItem();
+
+    }
+
+    private void establishDataForDrawerItem() {
+        DrawerItem[] drawerItems = new DrawerItem[7];
+        drawerItems[0] = new DrawerItem(R.drawable.ic_menu_home,"Home");
+        drawerItems[1] = new DrawerItem(R.drawable.ic_menu_math,"Math");
+        drawerItems[2] = new DrawerItem(R.drawable.ic_menu_physic,"Physical");
+        drawerItems[3] = new DrawerItem(R.drawable.ic_menu_chemistry,"Chemistry");
+        drawerItems[4] = new DrawerItem(R.drawable.ic_menu_biology,"Biology");
+        drawerItems[5] = new DrawerItem(R.drawable.ic_menu_setting,"Setting");
+        drawerItems[6] = new DrawerItem(R.drawable.ic_menu_support,"Support");
     }
 
     private void establishWidgetsAndroid(NavigationView navigationView) {
