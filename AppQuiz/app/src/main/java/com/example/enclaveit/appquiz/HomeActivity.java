@@ -18,6 +18,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
     private TextView navHeaderAuthorName;
     private TextView navHeaderAuthorDescription;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
