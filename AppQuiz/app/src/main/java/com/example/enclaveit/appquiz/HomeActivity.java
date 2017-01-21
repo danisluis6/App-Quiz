@@ -1,6 +1,5 @@
 package com.example.enclaveit.appquiz;
 
-import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
@@ -14,18 +13,11 @@ import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
-import android.widget.TextView;
 
 import com.example.enclaveit.appquiz.adapter.DrawerAdapter;
 import com.example.enclaveit.appquiz.bean.DrawerItem;
 
-import de.hdodenhof.circleimageview.CircleImageView;
-
 public class HomeActivity extends AppCompatActivity{
-
-    private TextView navHeaderAuthorName;
-    private TextView navHeaderAuthorDescription;
-    private CircleImageView navHeaderAuthorAvatar;
 
     private ListView mDrawerList;
     private String[] mNavigationDrawerItemTitles;
@@ -76,6 +68,9 @@ public class HomeActivity extends AppCompatActivity{
     private void setDataForAdapterDrawer() {
         mDrawerList.setAdapter(new DrawerAdapter(this,R.layout.list_view_item_row,getDrawerItem()));
         mDrawerList.setOnItemClickListener(new DrawerItemClickListener());
+        // How do I remove lines between ListViews on Android
+        mDrawerList.setDivider(null);
+        mDrawerList.setDividerHeight(0);
     }
 
     private class DrawerItemClickListener implements ListView.OnItemClickListener {
@@ -118,30 +113,27 @@ public class HomeActivity extends AppCompatActivity{
          *  * icon png for menu navigation
          *  * array-string that definite in string.xml
          */
-        DrawerItem[] drawerItems = new DrawerItem[7];
-        drawerItems[0] = new DrawerItem(R.drawable.ic_menu_home,"Home");
-        drawerItems[1] = new DrawerItem(R.drawable.ic_menu_math,"Math");
-        drawerItems[2] = new DrawerItem(R.drawable.ic_menu_physic,"Physical");
-        drawerItems[3] = new DrawerItem(R.drawable.ic_menu_chemistry,"Chemistry");
-        drawerItems[4] = new DrawerItem(R.drawable.ic_menu_biology,"Biology");
-        drawerItems[5] = new DrawerItem(R.drawable.ic_menu_setting,"Setting");
-        drawerItems[6] = new DrawerItem(R.drawable.ic_menu_support,"Support");
+        DrawerItem[] drawerItems = new DrawerItem[11];
+        drawerItems[0] = new DrawerItem(R.drawable.ic_home,"Home");
+        drawerItems[1] = new DrawerItem(R.drawable.ic_html,"HTML");
+        drawerItems[2] = new DrawerItem(R.drawable.ic_css,"CSS");
+        drawerItems[3] = new DrawerItem(R.drawable.ic_js,"JavaScript");
+        drawerItems[4] = new DrawerItem(R.drawable.ic_bootstrap,"Bootstrap");
+        drawerItems[5] = new DrawerItem(R.drawable.ic_jquery,"JQuery");
+        drawerItems[6] = new DrawerItem(R.drawable.ic_php,"PHP");
+        drawerItems[7] = new DrawerItem(R.drawable.ic_sql,"SQL");
+        drawerItems[8] = new DrawerItem(R.drawable.ic_xml,"XML");
+        drawerItems[9] = new DrawerItem(R.drawable.ic_setting,"Setting");
+        drawerItems[10] = new DrawerItem(R.drawable.ic_support,"Support");
         return drawerItems;
     }
 
     private void establishWidgetsAndroid() {
-        navigationView = (NavigationView) findViewById(R.id.nav_view);
-        navHeaderAuthorAvatar = (CircleImageView)this.findViewById(R.id.nav_header_author_avatar);
-        navHeaderAuthorName = (TextView)this.findViewById(R.id.nav_header_author_name) ;
-        navHeaderAuthorDescription = (TextView)this.findViewById(R.id.nav_header_author_description);
-
         // establish list of menu in DrawerLayout
         mDrawerList = (ListView)this.findViewById(R.id.menuList);
     }
 
     private void establishFontsWidgetAndroid() {
-        navHeaderAuthorName.setTypeface(Typeface.createFromAsset(this.getAssets(),"fonts/Roboto-Light.ttf"));
-        navHeaderAuthorDescription.setTypeface(Typeface.createFromAsset(this.getAssets(),"fonts/Roboto-Light.ttf"));
     }
 
     @Override
