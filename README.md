@@ -6,3 +6,6 @@
 <p align="center">
   <img src="https://github.com/danisluis6/App-Quiz/blob/version1/NavigationDrawer.png">
 </p>
+
+    - What do I do ?
+   + Relation between MainActivity with ScreenSlideActivity

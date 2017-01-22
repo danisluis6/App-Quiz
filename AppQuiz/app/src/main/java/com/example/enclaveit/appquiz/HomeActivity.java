@@ -16,6 +16,17 @@ import android.widget.ListView;
 
 import com.example.enclaveit.appquiz.adapter.DrawerAdapter;
 import com.example.enclaveit.appquiz.bean.DrawerItem;
+import com.example.enclaveit.appquiz.fragment.BootstrapFragment;
+import com.example.enclaveit.appquiz.fragment.CSSFragment;
+import com.example.enclaveit.appquiz.fragment.HTMLFragment;
+import com.example.enclaveit.appquiz.fragment.HomeFragment;
+import com.example.enclaveit.appquiz.fragment.JQueryFragment;
+import com.example.enclaveit.appquiz.fragment.JavaScriptFragment;
+import com.example.enclaveit.appquiz.fragment.PHPFragment;
+import com.example.enclaveit.appquiz.fragment.SQLFragment;
+import com.example.enclaveit.appquiz.fragment.SettingFragment;
+import com.example.enclaveit.appquiz.fragment.SupportFragment;
+import com.example.enclaveit.appquiz.fragment.XMLFragment;
 
 public class HomeActivity extends AppCompatActivity{
 
@@ -66,7 +77,7 @@ public class HomeActivity extends AppCompatActivity{
     }
 
     private void setDataForAdapterDrawer() {
-        mDrawerList.setAdapter(new DrawerAdapter(this,R.layout.list_view_item_row,getDrawerItem()));
+        mDrawerList.setAdapter(new DrawerAdapter(this,R.layout.item_menu_navigation,getDrawerItem()));
         mDrawerList.setOnItemClickListener(new DrawerItemClickListener());
         // How do I remove lines between ListViews on Android
         mDrawerList.setDivider(null);
@@ -84,10 +95,37 @@ public class HomeActivity extends AppCompatActivity{
         Fragment fragment = null;
         switch (position) {
             case 0:
+                fragment = new HomeFragment();
                 break;
             case 1:
+                fragment = new HTMLFragment();
                 break;
             case 2:
+                fragment = new CSSFragment();
+                break;
+            case 3:
+                fragment = new JavaScriptFragment();
+                break;
+            case 4:
+                fragment = new BootstrapFragment();
+                break;
+            case 5:
+                fragment = new JQueryFragment();
+                break;
+            case 6:
+                fragment = new PHPFragment();
+                break;
+            case 7:
+                fragment = new SQLFragment();
+                break;
+            case 8:
+                fragment = new XMLFragment();
+                break;
+            case 9:
+                fragment = new SettingFragment();
+                break;
+            case 10:
+                fragment = new SupportFragment();
                 break;
             default:
                 break;
