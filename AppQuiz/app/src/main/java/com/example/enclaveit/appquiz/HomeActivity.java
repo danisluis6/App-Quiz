@@ -10,6 +10,7 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
@@ -45,16 +46,13 @@ public class HomeActivity extends AppCompatActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        this.setSupportActionBar(toolbar);
+        setupToolbar();
 
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, mDrawerLayout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         mDrawerLayout.setDrawerListener(toggle);
         mDrawerLayout.setScrimColor(getResources().getColor(android.R.color.transparent));
         toggle.syncState();
-
-        navigationView = (NavigationView) findViewById(R.id.nav_view);
 
         // Let 's  establish s a lot of widgets android, avoid NullPointerException
         establishWidgetsAndroid();
@@ -66,6 +64,11 @@ public class HomeActivity extends AppCompatActivity{
 
         // Get information that setting in navigation drawer
         getInformationNavigationDrawer();
+    }
+
+    private void setupToolbar() {
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        this.setSupportActionBar(toolbar);
     }
 
     private void getInformationNavigationDrawer() {
@@ -172,15 +175,5 @@ public class HomeActivity extends AppCompatActivity{
     }
 
     private void establishFontsWidgetAndroid() {
-    }
-
-    @Override
-    public void onBackPressed() {
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        if (drawer.isDrawerOpen(GravityCompat.START)) {
-            drawer.closeDrawer(GravityCompat.START);
-        } else {
-            super.onBackPressed();
-        }
     }
 }
