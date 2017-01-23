@@ -1,5 +1,6 @@
 package com.example.enclaveit.appquiz;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
@@ -86,7 +87,8 @@ public class HomeActivity extends AppCompatActivity{
         Fragment fragment = null;
         switch (position) {
             case 0:
-                fragment = new HomeFragment();
+//                fragment = new HomeFragment();
+                startActivity(new Intent(HomeActivity.this,ScreenSlideActivity.class));
                 break;
             case 1:
                 fragment = new HTMLFragment();
@@ -124,10 +126,10 @@ public class HomeActivity extends AppCompatActivity{
 
         if (fragment != null) {
             FragmentManager fragmentManager = getSupportFragmentManager();
-            fragmentManager.beginTransaction().replace(R.id.content_view, fragment).commit();
+            fragmentManager.beginTransaction().replace(R.id.content_frame, fragment).commit();
             mDrawerList.setItemChecked(position, true);
             mDrawerList.setSelection(position);
-            this.setTitle(mNavigationDrawerItemTitles[position]);
+            setTitle(mNavigationDrawerItemTitles[position]);
             mDrawerLayout.closeDrawer(mDrawerList);
         } else {
             Log.e("MainActivity", "Error in creating fragment");
