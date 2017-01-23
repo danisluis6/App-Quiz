@@ -9,7 +9,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
-import com.example.enclaveit.appquiz.HomeActivity;
 import com.example.enclaveit.appquiz.R;
 import com.example.enclaveit.appquiz.ScreenSlideActivity;
 

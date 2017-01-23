@@ -87,38 +87,27 @@ public class HomeActivity extends AppCompatActivity{
         Fragment fragment = null;
         switch (position) {
             case 0:
-//                fragment = new HomeFragment();
-                startActivity(new Intent(HomeActivity.this,ScreenSlideActivity.class));
                 break;
             case 1:
                 fragment = new HTMLFragment();
                 break;
             case 2:
-                fragment = new CSSFragment();
                 break;
             case 3:
-                fragment = new JavaScriptFragment();
                 break;
             case 4:
-                fragment = new BootstrapFragment();
                 break;
             case 5:
-                fragment = new JQueryFragment();
                 break;
             case 6:
-                fragment = new PHPFragment();
                 break;
             case 7:
-                fragment = new SQLFragment();
                 break;
             case 8:
-                fragment = new XMLFragment();
                 break;
             case 9:
-                fragment = new SettingFragment();
                 break;
             case 10:
-                fragment = new SupportFragment();
                 break;
             default:
                 break;
