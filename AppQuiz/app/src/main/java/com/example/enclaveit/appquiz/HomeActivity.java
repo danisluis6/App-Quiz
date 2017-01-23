@@ -4,9 +4,7 @@ import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
-import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
@@ -34,7 +32,7 @@ public class HomeActivity extends AppCompatActivity{
     private ListView mDrawerList;
     private String[] mNavigationDrawerItemTitles;
     private NavigationView navigationView;
-
+    private Toolbar toolbar;
 
     private DrawerLayout mDrawerLayout;
 
@@ -48,12 +46,6 @@ public class HomeActivity extends AppCompatActivity{
 
         setupToolbar();
 
-        mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, mDrawerLayout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
-        mDrawerLayout.setDrawerListener(toggle);
-        mDrawerLayout.setScrimColor(getResources().getColor(android.R.color.transparent));
-        toggle.syncState();
-
         // Let 's  establish s a lot of widgets android, avoid NullPointerException
         establishWidgetsAndroid();
         // I just downloaded a lot of fonts and I want to set these fonts for text
@@ -62,21 +54,17 @@ public class HomeActivity extends AppCompatActivity{
          // I will set all of data DrawerItem for Adapter
         setDataForAdapterDrawer();
 
+        // I will set NavigationDrawer
+        mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
+        mDrawerLayout.setScrimColor(getResources().getColor(android.R.color.transparent));
+        setupDrawerToggle();
+
         // Get information that setting in navigation drawer
         getInformationNavigationDrawer();
     }
 
-    private void setupToolbar() {
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        this.setSupportActionBar(toolbar);
-    }
-
     private void getInformationNavigationDrawer() {
-        mDrawerTitle = getTitle();
         mNavigationDrawerItemTitles = getResources().getStringArray(R.array.navigation_drawer_items_array);
-        this.getSupportActionBar().setTitle(mDrawerTitle);
-
-        Log.d("title",String.valueOf(mDrawerTitle));
     }
 
     private void setDataForAdapterDrawer() {
@@ -139,11 +127,17 @@ public class HomeActivity extends AppCompatActivity{
             fragmentManager.beginTransaction().replace(R.id.content_view, fragment).commit();
             mDrawerList.setItemChecked(position, true);
             mDrawerList.setSelection(position);
-            setTitle(mNavigationDrawerItemTitles[position]);
+            this.setTitle(mNavigationDrawerItemTitles[position]);
             mDrawerLayout.closeDrawer(mDrawerList);
         } else {
             Log.e("MainActivity", "Error in creating fragment");
         }
+    }
+
+    @Override
+    public void setTitle(CharSequence title) {
+        mDrawerTitle = title;
+        getSupportActionBar().setTitle(mDrawerTitle);
     }
 
     private DrawerItem[] getDrawerItem() {
@@ -175,5 +169,21 @@ public class HomeActivity extends AppCompatActivity{
     }
 
     private void establishFontsWidgetAndroid() {
+        //
+    }
+
+    private void setupDrawerToggle() {
+        toolbar.setNavigationIcon(R.drawable.ic_menu);
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mDrawerLayout.openDrawer(Gravity.LEFT);
+            }
+        });
+    }
+
+    private void setupToolbar() {
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
+        this.setSupportActionBar(toolbar);
     }
 }
