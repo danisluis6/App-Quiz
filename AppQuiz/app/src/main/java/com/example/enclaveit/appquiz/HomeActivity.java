@@ -10,10 +10,10 @@ import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.example.enclaveit.appquiz.adapter.DrawerAdapter;
 import com.example.enclaveit.appquiz.bean.DrawerItem;
-import com.example.enclaveit.appquiz.exception.NullPointerExceptionWidgetAndroid;
 import com.example.enclaveit.appquiz.listener.DrawerItemClickListener;
 
 public class HomeActivity extends AppCompatActivity{
@@ -32,19 +32,18 @@ public class HomeActivity extends AppCompatActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
-        if(!establishWidgetsAndroid()){
+        if(establishWidgetsAndroid()){
             setDataForAdapterDrawer();
-        }else{
 
+            // I will set NavigationDrawer
+            mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
+            mDrawerLayout.setScrimColor(getResources().getColor(android.R.color.transparent));
+            setupDrawerToggle();
+
+            // Get information that setting in navigation drawer
+            getInformationNavigationDrawer();
         }
 
-        // I will set NavigationDrawer
-        mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
-        mDrawerLayout.setScrimColor(getResources().getColor(android.R.color.transparent));
-        setupDrawerToggle();
-
-        // Get information that setting in navigation drawer
-        getInformationNavigationDrawer();
     }
 
     private void getInformationNavigationDrawer() {
@@ -95,14 +94,23 @@ public class HomeActivity extends AppCompatActivity{
         try{
             mDrawerList = (ListView)this.findViewById(R.id.menuList);
             toolbar = (Toolbar)this.findViewById(R.id.toolbar);
-
-            this.setSupportActionBar(toolbar);
-            this.getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
-            throw new NullPointerExceptionWidgetAndroid("Null Pointer Exception Widget Android");
-        }catch(NullPointerExceptionWidgetAndroid ex){
+        }catch(Exception ex){
             valid = false;
-            Log.d(TAG,ex.getMessage());
+            Log.d(TAG,"Null Pointer Exception Widget Android");
+        }
+
+        /**
+         * @author: Definition
+         * Writting Exception to catch error "Null Pointer Exception"
+         */
+        if(valid){
+            try{
+                this.setSupportActionBar(toolbar);
+                this.getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+            }catch (Exception ex){
+                valid = false;
+                Log.d(TAG,"DisplayHomeAsUpEnabled  - Null Pointer Exception");
+            }
         }
         return valid;
     }
@@ -125,6 +133,7 @@ public class HomeActivity extends AppCompatActivity{
     public void closeNavigationDrawer(int position) {
         mDrawerList.setItemChecked(position, true);
         mDrawerList.setSelection(position);
-        mDrawerLayout.closeDrawer(mDrawerList);
+        Toast.makeText(this,"Result is "+position,Toast.LENGTH_LONG).show();
+        mDrawerLayout.closeDrawer(Gravity.LEFT);
     }
 }
