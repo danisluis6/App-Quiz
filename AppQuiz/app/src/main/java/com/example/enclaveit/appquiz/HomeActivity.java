@@ -1,59 +1,42 @@
 package com.example.enclaveit.appquiz;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
+import android.support.design.widget.TabLayout;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.example.enclaveit.appquiz.adapter.DrawerAdapter;
 import com.example.enclaveit.appquiz.bean.DrawerItem;
-import com.example.enclaveit.appquiz.fragment.BootstrapFragment;
-import com.example.enclaveit.appquiz.fragment.CSSFragment;
-import com.example.enclaveit.appquiz.fragment.HTMLFragment;
-import com.example.enclaveit.appquiz.fragment.HomeFragment;
-import com.example.enclaveit.appquiz.fragment.JQueryFragment;
-import com.example.enclaveit.appquiz.fragment.JavaScriptFragment;
-import com.example.enclaveit.appquiz.fragment.PHPFragment;
-import com.example.enclaveit.appquiz.fragment.SQLFragment;
-import com.example.enclaveit.appquiz.fragment.SettingFragment;
-import com.example.enclaveit.appquiz.fragment.SupportFragment;
-import com.example.enclaveit.appquiz.fragment.XMLFragment;
+import com.example.enclaveit.appquiz.exception.NullPointerExceptionWidgetAndroid;
+import com.example.enclaveit.appquiz.listener.DrawerItemClickListener;
 
 public class HomeActivity extends AppCompatActivity{
 
-    private ListView mDrawerList;
     private String[] mNavigationDrawerItemTitles;
     private NavigationView navigationView;
     private Toolbar toolbar;
 
+    private ListView mDrawerList;
     private DrawerLayout mDrawerLayout;
 
-    // Declaring vairable
-    private CharSequence mDrawerTitle;
+    private static final String TAG = "HomeActivity";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
-        setupToolbar();
+        if(!establishWidgetsAndroid()){
+            setDataForAdapterDrawer();
+        }else{
 
-        // Let 's  establish s a lot of widgets android, avoid NullPointerException
-        establishWidgetsAndroid();
-        // I just downloaded a lot of fonts and I want to set these fonts for text
-        establishFontsWidgetAndroid();
-
-         // I will set all of data DrawerItem for Adapter
-        setDataForAdapterDrawer();
+        }
 
         // I will set NavigationDrawer
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -70,65 +53,10 @@ public class HomeActivity extends AppCompatActivity{
 
     private void setDataForAdapterDrawer() {
         mDrawerList.setAdapter(new DrawerAdapter(this,R.layout.item_menu_navigation,getDrawerItem()));
-        mDrawerList.setOnItemClickListener(new DrawerItemClickListener());
+        mDrawerList.setOnItemClickListener(new DrawerItemClickListener(HomeActivity.this));
         // How do I remove lines between ListViews on Android
         mDrawerList.setDivider(null);
         mDrawerList.setDividerHeight(0);
-    }
-
-    private class DrawerItemClickListener implements ListView.OnItemClickListener {
-        @Override
-        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-            selectItem(position);
-        }
-    }
-
-    private void selectItem(int position) {
-        Fragment fragment = null;
-        switch (position) {
-            case 0:
-                break;
-            case 1:
-                fragment = new HTMLFragment();
-                break;
-            case 2:
-                break;
-            case 3:
-                break;
-            case 4:
-                break;
-            case 5:
-                break;
-            case 6:
-                break;
-            case 7:
-                break;
-            case 8:
-                break;
-            case 9:
-                break;
-            case 10:
-                break;
-            default:
-                break;
-        }
-
-        if (fragment != null) {
-            FragmentManager fragmentManager = getSupportFragmentManager();
-            fragmentManager.beginTransaction().replace(R.id.content_frame, fragment).commit();
-            mDrawerList.setItemChecked(position, true);
-            mDrawerList.setSelection(position);
-            setTitle(mNavigationDrawerItemTitles[position]);
-            mDrawerLayout.closeDrawer(mDrawerList);
-        } else {
-            Log.e("MainActivity", "Error in creating fragment");
-        }
-    }
-
-    @Override
-    public void setTitle(CharSequence title) {
-        mDrawerTitle = title;
-        getSupportActionBar().setTitle(mDrawerTitle);
     }
 
     private DrawerItem[] getDrawerItem() {
@@ -154,13 +82,29 @@ public class HomeActivity extends AppCompatActivity{
         return drawerItems;
     }
 
-    private void establishWidgetsAndroid() {
-        // establish list of menu in DrawerLayout
-        mDrawerList = (ListView)this.findViewById(R.id.menuList);
-    }
+    /**
+     *   @author: Lorence
+     *   establish wigets android by findViewById
+     *   Example: ListView or Toolbar,...
+     *
+     *   Especial: there are some setting for toobar such as: DisplayHomeAsUpEnabled...
+     */
 
-    private void establishFontsWidgetAndroid() {
-        //
+    private boolean establishWidgetsAndroid() {
+        boolean valid = true;
+        try{
+            mDrawerList = (ListView)this.findViewById(R.id.menuList);
+            toolbar = (Toolbar)this.findViewById(R.id.toolbar);
+
+            this.setSupportActionBar(toolbar);
+            this.getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+            throw new NullPointerExceptionWidgetAndroid("Null Pointer Exception Widget Android");
+        }catch(NullPointerExceptionWidgetAndroid ex){
+            valid = false;
+            Log.d(TAG,ex.getMessage());
+        }
+        return valid;
     }
 
     private void setupDrawerToggle() {
@@ -173,8 +117,14 @@ public class HomeActivity extends AppCompatActivity{
         });
     }
 
-    private void setupToolbar() {
-        toolbar = (Toolbar) findViewById(R.id.toolbar);
-        this.setSupportActionBar(toolbar);
+    /**
+     * @author: Lorence
+     * @param position
+     * Close Navigation Drawer
+     */
+    public void closeNavigationDrawer(int position) {
+        mDrawerList.setItemChecked(position, true);
+        mDrawerList.setSelection(position);
+        mDrawerLayout.closeDrawer(mDrawerList);
     }
 }
