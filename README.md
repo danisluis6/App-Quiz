@@ -17,4 +17,7 @@
   <img src="https://github.com/danisluis6/App-Quiz/blob/version5/4.png">
 </p>
 
+http://stackoverflow.com/questions/33233902/how-to-create-toolbar-with-custom-button-on-the-left
+https://www.youtube.com/watch?v=yVSXF1tfpjU
+
 
