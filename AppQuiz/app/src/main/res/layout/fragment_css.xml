@@ -4,6 +4,6 @@
     android:id="@+id/content_home"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/background"
+    android:background="@drawable/css"
     tools:context="com.example.enclaveit.appquiz.HomeActivity">
 </RelativeLayout>
