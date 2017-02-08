@@ -20,4 +20,5 @@
 http://stackoverflow.com/questions/33233902/how-to-create-toolbar-with-custom-button-on-the-left
 https://www.youtube.com/watch?v=yVSXF1tfpjU
 
+    How to build map: https://github.com/jiahuanyu/SVGMapView
 
